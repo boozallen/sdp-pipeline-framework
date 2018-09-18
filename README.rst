@@ -22,4 +22,4 @@ For More Information
 See our documentation_.
 
 .. _documentation: https://boozallen.github.io/sdp-pipeline-framework/index.html
-.. _here: https://boozallen.github.io/sdp-pipeline-framework/html/pages/contribute-to-docs.html
+.. _here: https://boozallen.github.io/sdp-pipeline-framework/pages/contribute-to-docs.html
