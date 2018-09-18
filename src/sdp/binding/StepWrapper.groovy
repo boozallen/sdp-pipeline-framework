@@ -26,7 +26,6 @@ class StepWrapper implements SdpBindingItem{
     }
 
     def call(Object... args){
-        script.steps.echo "[SDP] Executing step ${name} from the ${library} Library" 
         def result 
         def sdp_context = [
             step: name, 
@@ -35,6 +34,7 @@ class StepWrapper implements SdpBindingItem{
         ]
         try{
             script.extensions.invoke BeforeStep, script.getBinding(), sdp_context
+            script.steps.echo "[SDP] Executing step ${name} from the ${library} Library" 
             result = InvokerHelper.getMetaClass(impl).invokeMethod(impl, "call", args);
         } catch (Exception x) {
             script.currentBuild.result = "Failure"
