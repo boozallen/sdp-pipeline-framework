@@ -8,9 +8,9 @@ Deploying the Solutions Delivery Platform with the default reference architectur
 .. code-block:: bash
 
    ## cloning via ssh
-   git clone git@github.boozallencsn.com:solutions-delivery-platform/sdp.git
+   git clone git@github.com:boozallen/sdp-helm-chart.git
    ## cloning via https
-   git clone https://github.boozallencsn.com/solutions-delivery-platform/sdp.git
+   git clone https://github.com/boozallen/sdp-helm-chart.git
 
 **If you haven't already**, use one of the above commands to clone the sdp repository to your computer. We will be editing the *values.yaml* file in the root of this repository to configure the SDP for your project.
 

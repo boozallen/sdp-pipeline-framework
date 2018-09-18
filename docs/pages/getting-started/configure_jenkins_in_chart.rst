@@ -145,16 +145,16 @@ Putting it all together, an example of the jenkins portion for the *values.yaml*
         - name: terrana-steven
           displayName: Steven Terrana
           credentialID: github
-          apiUrl: "https://github.boozallencsn.com/api/v3"
+          apiUrl: "https://github.com/api/v3"
         - name: Red-Hat-Summit
           displayName: Red Hat Summit
           credentialID: github
-          apiUrl: "https://github.boozallencsn.com/api/v3"
+          apiUrl: "https://github.com/api/v3"
 
         # Pipeline Configuration Repository
         pipelineLibraries:
         - name: red-hat-summit
-          githubApiUrl: "https://github.boozallencsn.com/api/v3"
+          githubApiUrl: "https://github.com/api/v3"
           githubCredentialID: github
           org: Red-Hat-Summit
           repo: pipeline-configuration
