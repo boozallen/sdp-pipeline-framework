@@ -12,7 +12,7 @@ def call(script){
     error "pipeline_config.groovy not found" 
 
   // load tenant configuration 
-  SdpConfig tenant = new SdpConfigDsl().parse(readFile("pipeline_config.groovy")) 
+  SdpConfig tenant = SdpConfigDsl.parse(readFile("pipeline_config.groovy")) 
     
   /*
     if no organization was specified, the aggregated
@@ -25,7 +25,7 @@ def call(script){
   }
 
   library organization_name  
-  SdpConfig organization = new SdpConfigDsl().parse(libraryResource("sdp-org/pipeline_config.groovy"))
+  SdpConfig organization = SdpConfigDsl.parse(libraryResource("sdp-org/pipeline_config.groovy"))
   
   PipelineConfig.join(organization)
   PipelineConfig.join(tenant)
