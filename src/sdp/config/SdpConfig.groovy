@@ -12,9 +12,8 @@ class SdpConfig implements Serializable{
     ArrayList merge = []
     ArrayList override = []
 
+
     /*
-        we always want library configurations to be mergeable
-    */
     ArrayList getMerge(){
         if(config.libraries) merge << getNestedLibraryKeys(config.libraries)
         return merge 
@@ -30,4 +29,5 @@ class SdpConfig implements Serializable{
         }
         return result
     }
+    */
 }
