@@ -36,6 +36,8 @@ void call(script){
         step_impl = {
           org_default_step_implementation(step)
         }
+        def step_wrapper = new StepWrapper(script, step_impl, step, origin)
+        script.getBinding().setVariable(step, step_wrapper)
       }
     } else{
       if (!library_step_exists(script, step)){
@@ -43,10 +45,10 @@ void call(script){
         step_impl = {
           default_step_implementation(step)
         }
+        def step_wrapper = new StepWrapper(script, step_impl, step, origin)
+        script.getBinding().setVariable(step, step_wrapper)
       }
     }
-    def step_wrapper = new StepWrapper(script, step_impl, step, origin)
-    script.getBinding().setVariable(step, step_wrapper)
   }
 }
 
