@@ -23,6 +23,7 @@ class PipelineConfig implements Serializable{
     private PipelineConfig(){}
 
     static PipelineConfig getInstance(){
+      steps.echo "instance -> ${instance}"
       if (!instance){
         instance = new PipelineConfig()
         CpsThread c = CpsThread.current()
