@@ -8,6 +8,7 @@ package sdp.config
 import org.jenkinsci.plugins.workflow.cps.CpsThread
 import org.jenkinsci.plugins.workflow.cps.CpsScript
 import org.jenkinsci.plugins.workflow.cps.DSL
+import org.codehaus.groovy.runtime.InvokerHelper
 
 import java.util.ArrayList
 
