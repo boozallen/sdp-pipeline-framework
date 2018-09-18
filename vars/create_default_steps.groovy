@@ -3,6 +3,7 @@
   This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 */
 
+import sdp.binding.*
 import org.jenkinsci.plugins.workflow.cps.GlobalVariable
 
 /*
@@ -27,20 +28,25 @@ void call(script){
   if (s) default_steps += s
 
   default_steps.each{ step ->
+    def step_impl 
+    def origin 
     if (library_step_exists("org_default_step_implementation")){
       if (!library_step_exists(script, step)){
-        script.binding.setVariable(step) {
+        origin = "Organizational Default Step Implementation"
+        step_impl = {
           org_default_step_implementation(step)
         }
       }
-    }
-    else{
+    } else{
       if (!library_step_exists(script, step)){
-        script.binding.setVariable(step) {
+        origin = "SDP Default Step Implementation"
+        step_impl = {
           default_step_implementation(step)
         }
       }
     }
+    def step_wrapper = new StepWrapper(script, step_impl, step, origin)
+    script.getBinding().setVariable(step, step_wrapper)
   }
 }
 

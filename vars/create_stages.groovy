@@ -3,6 +3,7 @@
   This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 */
 
+import sdp.binding.Stage
 /*
   Let's users define pipeline stages
   
@@ -20,10 +21,6 @@
 */
 void call(script){
   pipeline_config().stages.each{name, steps ->
-    script.binding.setVariable(name){
-      steps.keySet().each{
-        script.invokeMethod(it, null)
-      }
-    }
+    script.getBinding().setVariable(name, new Stage(script, name, steps.keySet()))
   }
 }

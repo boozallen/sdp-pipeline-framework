@@ -5,4 +5,4 @@
 
 import sdp.config.PipelineConfig
 
-def call(){  return PipelineConfig.instance.current.config }
+def call(){ return PipelineConfig.instance.current?.config }

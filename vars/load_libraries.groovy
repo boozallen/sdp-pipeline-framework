@@ -3,6 +3,8 @@
   This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 */
 
+import sdp.binding.* 
+
 import org.jenkinsci.plugins.workflow.libs.LibraryRecord
 import org.jenkinsci.plugins.workflow.libs.LibrariesAction
 import org.jenkinsci.plugins.workflow.libs.GlobalLibraries
@@ -17,21 +19,22 @@ void call(script){
     if( library_defined_by_jenkins(lib_name) ){
       library "${lib_name}@${branch ?: "master"}"
       get_external_library_steps(lib_name).each{ step ->
-        script.getBinding().addStepToRegistry(step, lib_name)
-        getProperty(step).class.metaClass."config" = config
+        def step_impl = getProperty(step)
+        step_impl.metaClass."config" = config
+        def step_wrapper = new StepWrapper(script, step_impl, step, lib_name)
+        script.getBinding().setVariable(step, step_wrapper)
       }
     }else if( library_defined_by_sdp(lib_name) ){
       println "Loading Libary ${lib_name} From SDP Monorepo"
-      if (branch){
-        println """
-          Warning! SDP libraries can't specify different branches to load.
-          Ignoring branch configuration [${branch}] for library [${lib_name}]
-        """
-      }
+      if (branch) println """
+        Warning! SDP libraries can't specify different branches to load.
+        Ignoring branch configuration [${branch}] for library [${lib_name}]
+      """
       get_sdp_library_steps(lib_name).each{ step, impl ->
-        transformed_impl = sdp_evaluate("${impl}; return this", script.getBinding())
+        def transformed_impl = sdp_evaluate("${impl}; return this", script.getBinding())
         transformed_impl.metaClass.config = config
-        script.getBinding().setVariable(step, transformed_impl, lib_name)
+        def step_wrapper = new StepWrapper(script, transformed_impl, step, lib_name)
+        script.getBinding().setVariable(step, step_wrapper)
       }
     }else{
       error "Library ${lib_name} not defined in Jenkins or SDP monorepo"
