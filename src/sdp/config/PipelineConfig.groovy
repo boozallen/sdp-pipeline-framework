@@ -34,6 +34,7 @@ class PipelineConfig implements Serializable{
       if (c) instance.steps = new DSL(c.getExecution().getOwner())
       else throw new SdpConfigException("current CpsThread is null.")
       instance.current = SdpConfigDsl.parse(steps.libraryResource(DEFAULT_SDP_CONFIG))
+      instance.current.override = instance.current.config.keySet()
     }
 
     static void join(SdpConfig child){
