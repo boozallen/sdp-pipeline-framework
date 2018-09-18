@@ -62,7 +62,7 @@ class SdpConfigSandbox extends GroovyInterceptor {
   @Override
   @NonCPS
   public void onSuperConstructor(Invoker invoker, Class receiver, Object... args) throws Throwable {
-    if (!receiver.equals(SdpConfigBuilder.class)){
+    if (!(receiver in SdpConfigBuilder)){
       throw new SecurityException("""
         invoker -> ${invoker}
         receiver -> ${receiver}
