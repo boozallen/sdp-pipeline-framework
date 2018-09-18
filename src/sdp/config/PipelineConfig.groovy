@@ -72,7 +72,7 @@ class PipelineConfig implements Serializable{
         o.clear()
       }
       p.tokenize('.').inject(o){ obj, prop ->    
-        if (prop.equals(last_token) && InvokerHelper.getMetaClass(obj?."$prop").respondsTo(obj?."$prop", "clear", (Object[]) null))){
+        if (prop.equals(last_token) && InvokerHelper.getMetaClass(obj?."$prop").respondsTo(obj?."$prop", "clear", (Object[]) null)){
           obj?."$prop".clear()
         }
         obj?."$prop"
