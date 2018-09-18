@@ -24,17 +24,20 @@ class PipelineConfig implements Serializable{
 
     static PipelineConfig getInstance(){
       steps.echo "instance -> ${instance}"
-      if (!instance){
-        instance = new PipelineConfig()
-        CpsThread c = CpsThread.current()
-        if (c) instance.steps = new DSL(c.getExecution().getOwner())
-        else throw new SdpConfigException("current CpsThread is null.")
-        instance.current = SdpConfigDsl.parse(steps.libraryResource(DEFAULT_SDP_CONFIG))
-      }
+      if (!instance) initialize()
       return instance
     }
 
+    static initialize(){
+      instance = new PipelineConfig()
+      CpsThread c = CpsThread.current()
+      if (c) instance.steps = new DSL(c.getExecution().getOwner())
+      else throw new SdpConfigException("current CpsThread is null.")
+      instance.current = SdpConfigDsl.parse(steps.libraryResource(DEFAULT_SDP_CONFIG))
+    }
+
     static void join(SdpConfig child){
+      if !(instance) initialize()
       def pipeline_config = child.config + instance.current.config 
 
       instance.current.override.each{ key ->
