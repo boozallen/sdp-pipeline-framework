@@ -5,17 +5,10 @@
 
 import org.kohsuke.github.*
 
-def gh() {
+def call() {
   withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'PAT', usernameVariable: 'USER')]) {
     def ghUrl = "${env.GIT_URL.split("/")[0..-3].join("/")}/api/v3"
     return org.kohsuke.github.GitHub.connectToEnterprise(ghUrl, PAT)
   }
 }
 
-def getRepo() {
-  return gh().getRepository("${env.ORG_NAME}/${env.REPO_NAME}")
-}
-
-def pr() {
-  return getRepo().getPullRequest(env.CHANGE_ID.toInteger())
-}

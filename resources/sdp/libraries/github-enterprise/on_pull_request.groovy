@@ -56,5 +56,5 @@ void update_pr(args){
 }
 
 def get_source_branch(){
-  return ghe.pr().getHead().getRef() 
+  return pr().getHead().getRef() 
 }
