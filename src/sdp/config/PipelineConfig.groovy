@@ -39,8 +39,13 @@ class PipelineConfig implements Serializable{
     }
 
     static void join(SdpConfig child){
-      if (!instance) initialize()
-      def pipeline_config = child.config + instance.current.config 
+      def pipeline_config
+      if (!instance){
+        initialize()
+        pipeline_config = instance.current.config + child.config 
+      } else{
+        pipeline_config = child.config + instance.current.config
+      }
 
       instance.current.override.each{ key ->
         if (get_prop(child.config, key)){
