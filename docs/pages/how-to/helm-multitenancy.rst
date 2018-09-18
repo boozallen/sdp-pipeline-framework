@@ -26,4 +26,4 @@ In order to simplify the process for deploying Helm securely, we have written a 
 It then configures permissions so that the Tiller server can deploy to the application environments, and each application
 environment has permissions to pull images from the image stream project.  
 
-.. _script: https://github.boozallencsn.com/solutions-delivery-platform/sdp/blob/master/resources/helm/provision_app_envs.sh
+.. _script: https://github.com/boozallen/sdp-helm-chart/blob/master/resources/helm/provision_app_envs.sh

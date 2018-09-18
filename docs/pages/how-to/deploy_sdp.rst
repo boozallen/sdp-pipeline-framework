@@ -24,7 +24,7 @@ We have created several helm charts to deploy additional DevSecOps tooling.  The
 for the SDP helm chart can be seen in the ``README.rst`` of the deployment repository.  It renders best in the browser
 and can be seen `here`_.
 
-.. _here: https://github.boozallencsn.com/solutions-delivery-platform/sdp/blob/master/README.rst
+.. _here: https://github.com/boozallen/sdp-helm-chart/blob/master/README.rst
 
 ========================
 Run the Installer Script

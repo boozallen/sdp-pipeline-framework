@@ -16,9 +16,9 @@ that page.
 .. code-block:: bash
 
    ## cloning via ssh
-   git clone git@github.boozallencsn.com:solutions-delivery-platform/pipeline-framework.git
+   git clone git@github.com:boozallen/sdp-pipeline-framework.git
    ## cloning via https
-   git clone https://github.boozallencsn.com/solutions-delivery-platform/pipeline-framework.git
+   git clone https://github.com/boozallen/sdp-pipeline-framework.git
 
 **Create a branch for your changes**
 
@@ -42,7 +42,8 @@ that page.
 
    git push -u origin <my-awesome-doc-contribution>
 
-**Create a** `pull request`_ **and add a reviewer**
+**Create a Pull Request**
+
 
 **Done! Your changes will be reviewed by an SDP team member**
 
@@ -52,7 +53,6 @@ ReStructuredText Syntax
 Go read some documentation_ on RST syntax.
 
 .. _documentation: http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
-.. _pull request: https://github.boozallencsn.com/solutions-delivery-platform/pipeline-framework/compare
 
 Local Development Without Docker 
 --------------------------------

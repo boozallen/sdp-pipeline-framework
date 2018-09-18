@@ -23,7 +23,7 @@ recommended to start from this template and adding your additional settings to
 that template copy. Some of the necessary settings you will need to configure
 are described below.
 
-.. _sdp repository README: https://github.boozallencsn.com/solutions-delivery-platform/sdp/blob/master/README.rst
+.. _sdp repository README: https://github.com/boozallen/sdp-helm-chart/blob/master/README.rst
 
 =============================
 Configure GitHub Organization

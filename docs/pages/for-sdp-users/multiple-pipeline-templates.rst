@@ -13,7 +13,7 @@ SDP provides a `default Jenkinsfile`_.  If you wish to override this with your o
 creating a ``Jenkinsfile`` in your organizational pipeline configuration repository located at 
 ``/resources/sdp-org/Jenkinsfile``. 
 
-.. _default Jenkinsfile: https://github.boozallencsn.com/solutions-delivery-platform/pipeline-framework/blob/master/resources/sdp/Jenkinsfile
+.. _default Jenkinsfile: https://github.com/boozallen/sdp-pipeline-framework/blob/master/resources/sdp/Jenkinsfile
 
 The presence of this file is all that's required to override the default SDP pipeline. 
 

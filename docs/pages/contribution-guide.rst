@@ -11,4 +11,4 @@ You wanna help! Great, here's how:
 2. Do another thing!
 --------------------
 
-.. _Pipeline Framework: https://github.boozallencsn.com/solutions-delivery-platform/pipeline-framework
+.. _Pipeline Framework: https://github.com/boozallen/sdp-pipeline-framework.git

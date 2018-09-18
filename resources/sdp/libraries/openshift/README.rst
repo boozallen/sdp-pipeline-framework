@@ -135,7 +135,7 @@ An example of helm configurations:
     }
     libraries{
       openshift{
-        helm_configuration_repository = "https://github.boozallencsn.com/Red-Hat-Summit/helm-configuration.git"
+        helm_configuration_repository = "https://github.com/Example-Org/helm-configuration.git"
         helm_configuration_repository_credential = "github"
         tiller_namespace = "rhs-tiller"
         tiller_credential = "rhs-tiller"
@@ -163,18 +163,14 @@ Putting It All Together
 
     application_environments{
       dev{
-        short_name = "dev"
         long_name = "Development" 
         chart_values_file = "dev_values.yaml" 
       }
       test{
-        short_name = "test" 
         long_name = "Test" 
         tiller_release_name = "banana" 
-
       }
       prod{
-        short_name = "prod"
         long_name = "Production" 
         tiller_namespace = "rhs-tiller-prod" 
         tiller_credential = "rhs-tiller-prod" 
@@ -184,7 +180,7 @@ Putting It All Together
     libraries{
       openshift{
         url = "https://openshift.dev.example.com:8443" 
-        helm_configuration_repository = "https://github.boozallencsn.com/Red-Hat-Summit/helm-configuration.git"
+        helm_configuration_repository = "https://github.com/Example-Org/helm-configuration.git"
         helm_configuration_repository_credential = "github"
         tiller_namespace = "rhs-tiller"
         tiller_credential = "rhs-tiller"

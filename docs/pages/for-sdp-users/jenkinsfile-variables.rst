@@ -20,7 +20,6 @@ Use the ``keywords`` block to add variables to your Jenkinsfile.
         develop =  /^[Dd]evelop(ment|er|)$/ 
         hotfix  =  /^[Hh]ot[Ff]ix-/ 
         release =  /^[Rr]elease-(\d+.)*\d$/
-        testEndpointUrl = "http://myapp.boozallencsn.com/test"
     }
 
 then, from within your Jenkinsfile (assuming you've loaded the github-enterprise library) you could say: 

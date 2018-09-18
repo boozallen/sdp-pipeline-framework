@@ -32,14 +32,11 @@ Assuming this is your use case, there are a few prerequisites:
 * An OpenShift cluster has been deployed. If you would like some tips for deploying OpenShift in Booz Allen's AWS CSN environment, refer to our :ref:`walkthrough<deploy openshift on aws csn>`.
 * You're using GitHub (public or enterprise) to host source code
 
-  * If you do not already have source code feel free to fork the `sdp-website repo`_ from Red Hat Summit
-
 * Your workstation is running OSX or Linux, either natively, in a VM, or in a container
 * You (and your cluster) can access the `sdp`_ and `pipeline-framework`_ GitHub repositories
 
-.. _sdp: https://github.boozallencsn.com/solutions-delivery-platform/sdp
-.. _pipeline-framework: https://github.boozallencsn.com/solutions-delivery-platform/pipeline-framework
-.. _sdp-website repo: https://github.boozallencsn.com/Red-Hat-Summit/sdp-website
+.. _sdp: https://github.com/boozallen/sdp-helm-chart.git
+.. _pipeline-framework: https://github.com/boozallen/sdp-pipeline-framework
 
 
 .. note:: Support of other git based scm's and non-git scm's are on the roadmap, but have not yet been implemented.

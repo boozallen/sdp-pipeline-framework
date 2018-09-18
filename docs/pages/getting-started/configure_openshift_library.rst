@@ -135,7 +135,7 @@ Add this repository to your configuration file, which should now look like:
         url = <your openshift url> // for example: https://master.oscp.microcaas.net:8443
         tiller_namespace = "demo-tiller"
         tiller_credential = "demo-tiller"
-        helm_configuration_repository = <url to your helm repo> // for example: "https://github.boozallencsn.com/Red-Hat-Summit/helm-configuration.git"
+        helm_configuration_repository = <url to your helm repo> // for example: "https://github.com/Example-Org/helm-configuration.git"
         helm_configuration_repository_credential = <Jenkins credential ID to access repo> // probably "github"
       }
       owasp_zap{
@@ -332,7 +332,7 @@ frontend.yaml
         name: frontend
         namespace: {{ .Values.namespace }}
       spec:
-        host: "frontend-{{ .Release.Name }}.apps.oscp.microcaas.net"
+        host: "frontend-{{ .Release.Name }}.apps.oscp.example.net"
         to:
           kind: Service
           name: frontend

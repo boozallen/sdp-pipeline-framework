@@ -29,4 +29,4 @@ and tenants.
 
 
 
-.. _The SDP default configuration file: https://github.boozallencsn.com/solutions-delivery-platform/pipeline-framework/blob/master/resources/sdp/pipeline_config.groovy
+.. _The SDP default configuration file: https://github.com/boozallen/sdp-pipeline-framework/blob/master/resources/sdp/pipeline_config.groovy

@@ -89,7 +89,7 @@ The configuration options within your defined step:
     that method will simply do nothing when called.  If you need a more opinionated default
     step implementation, you can define your own. Please read the next section to see how. 
 
-.. _default SDP configuration file: https://github.boozallencsn.com/solutions-delivery-platform/pipeline-framework/blob/master/resources/sdp/pipeline_config.groovy
+.. _default SDP configuration file: https://github.com/boozallen/sdp-pipeline-framework/blob/master/resources/sdp/pipeline_config.groovy
 
 Organizational Default Step Implementation
 ==========================================
