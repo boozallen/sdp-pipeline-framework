@@ -1,8 +1,11 @@
 Solutions Delivery Platform
 ===========================
 
-So you're interested in the Solutions Delivery Platform? Great! You've come to the right place.  These docs will serve as your one-stop-shop for everything SDP.  From reference architectures to installation,
-configuration, tool integration, and the nitty gritty of how it works under the hood:  you'll find it here.
+.. note:: 
+	Copyright © 2018 Booz Allen Hamilton. All Rights Reserved.
+	
+	This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+
 
 What problem are we trying to solve?
 ####################################

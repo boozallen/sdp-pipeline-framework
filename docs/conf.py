@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 
 project = u'Solutions Delivery Platform'
-copyright = u'2018, Booz Allen Hamilton'
+copyright = u'2018, Booz Allen Hamilton. All Rights Reserved. \n  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl'
 author = u'Steven Terrana'
 
 # The short X.Y version
