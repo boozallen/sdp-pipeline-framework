@@ -8,7 +8,6 @@ package sdp.config
 import org.jenkinsci.plugins.workflow.cps.CpsThread
 import org.jenkinsci.plugins.workflow.cps.CpsScript
 import org.jenkinsci.plugins.workflow.cps.DSL
-import org.codehaus.groovy.runtime.InvokerHelper
 
 import java.util.ArrayList
 
@@ -68,14 +67,14 @@ class PipelineConfig implements Serializable{
 
     static void clear_prop(o, p){
       def last_token
-      if (p.tokenize('.')){
-        last_token = p.tokenize('.').last()
-      }
-      else if(InvokerHelper.getMetaClass(o).respondsTo(o, "clear", (Object[]) null)){
+      if (p.tokenize('.')) last_token = p.tokenize('.').last()
+      else if (InvokerHelper.getMetaClass(o).respondsTo(o, "clear", (Object[]) null)){
         o.clear()
       }
       p.tokenize('.').inject(o){ obj, prop ->    
-        if (prop.equals(last_token)) obj?."$prop".clear()
+        if (prop.equals(last_token) && InvokerHelper.getMetaClass(obj?."$prop").respondsTo(obj?."$prop", "clear", (Object[]) null))){
+          obj?."$prop".clear()
+        }
         obj?."$prop"
       }   
     }
