@@ -1,0 +1,1 @@
+../../../resources/sdp/libraries/a11y/README.rst

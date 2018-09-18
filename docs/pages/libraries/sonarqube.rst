@@ -1,0 +1,1 @@
+../../../resources/sdp/libraries/sonarqube/README.rst

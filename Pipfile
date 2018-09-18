@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+
+[packages]
+sphinx = "*"
+sphinx-autobuild = "*"
+sphinx-rtd-theme = "*"
+recommonmark = "*"
+sphinx-versioning = {git = "https://github.com/sizmailov/sphinxcontrib-versioning", ref = "conditionally_run_setup_py"}
+
+[requires]
+python_version = "2.7"

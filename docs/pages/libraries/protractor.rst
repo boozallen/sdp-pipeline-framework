@@ -1,0 +1,1 @@
+../../../resources/sdp/libraries/protractor/README.rst
