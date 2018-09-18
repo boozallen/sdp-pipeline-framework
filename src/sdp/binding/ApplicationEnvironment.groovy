@@ -40,7 +40,7 @@ class ApplicationEnvironment implements SdpBindingItem{
             meta.getProperty(this)
         } else {
             if (config.containsKey(name)) return config.get(name)
-            else throw new SdpConfigException("The Application Environment '${long_name}' does not have field '${name}'")
+            else return null
         }
     }
 
