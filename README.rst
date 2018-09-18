@@ -19,10 +19,6 @@ Repository Contents
 
 For More Information
 --------------------
-See our website_ or documentation_.
+See our documentation_.
 
-
-
-.. _here: https://pages.github.boozallencsn.com/solutions-delivery-platform/pipeline-framework/pages/contribute-to-docs.html
-.. _website: https://sdp.bah.com
-.. _documentation: https://pages.github.boozallencsn.com/solutions-delivery-platform/pipeline-framework/
+.. _documentation: https://boozallen.github.io/sdp-pipeline-framework/html/index.html
