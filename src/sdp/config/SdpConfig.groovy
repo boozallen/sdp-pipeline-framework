@@ -14,6 +14,11 @@ class SdpConfig implements Serializable{
 
 
     /*
+    TODO:
+        come back to this.  libraries should probably be mergeable by
+        default recursively. so you dont have to specify the allowance
+        of additional library configs for each library. 
+        
     ArrayList getMerge(){
         if(config.libraries) merge << getNestedLibraryKeys(config.libraries)
         return merge 

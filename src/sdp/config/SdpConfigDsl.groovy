@@ -10,6 +10,19 @@ import org.kohsuke.groovy.sandbox.SandboxTransformer
 import groovy.lang.Script
 import java.util.ArrayList
 
+/*
+  Parses an SDP Config File and returns a SdpConfig object
+
+  example usage:
+
+    SdpConfig my_config = SdpConfigDsl.parse("""
+      libraries{
+        owasp_zap{
+          target = "example.com"
+        }
+      }
+    """)
+*/
 class SdpConfigDsl implements Serializable{
   
   static SdpConfig parse(String script_text){

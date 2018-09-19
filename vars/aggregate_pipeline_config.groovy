@@ -5,6 +5,24 @@
 
 import sdp.config.*
 
+/*
+  the logic to aggregate the organizational hierarchy of configs.
+
+  right now.. tenants specify their org (bad) 
+  soon.. job hierarchy = org hierarchy: 
+  
+  first folder in the hierarchy will have their pipeline_configuration
+  repository loaded as a library implicitly
+
+  folder structure within that library reflect the same hierarchy so 
+  config files can be found.
+
+  a better way might be to add a property to the Folder class in Jenkins
+  to put the config files right on the folders themselves.
+
+  TBD
+
+*/
 def call(script){
   
   // tenant must have a pipeline_config.groovy 

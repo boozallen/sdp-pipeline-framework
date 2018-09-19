@@ -7,6 +7,15 @@ package sdp.config
 
 import java.util.ArrayList
 
+/*
+    Base class during Config File DSL execution.
+    Basically just turns the nested closure syntax
+    into a nested hash map while recognizing the keys
+    "merge" and "override" to put onto the SdpConfig object
+
+    the sdp_config variable here comes from the instance
+    being created and is instantiated in SdpConfigDsl
+*/
 abstract class SdpConfigBuilder extends Script{
     ArrayList object_stack = []
     ArrayList node_stack = []
