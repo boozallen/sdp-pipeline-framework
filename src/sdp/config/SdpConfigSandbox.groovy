@@ -9,6 +9,13 @@ import org.kohsuke.groovy.sandbox.GroovyValueFilter
 import org.kohsuke.groovy.sandbox.GroovyInterceptor
 import org.kohsuke.groovy.sandbox.GroovyInterceptor.Invoker
 
+/*
+  our sandbox.  just block all the things except the creation of
+  the SdpConfigBuilder base class and methods associated with that. 
+
+  The sandbox is having trouble recognizing the receiver as type SdpConfigBuilder
+  so backed off to checking if it's a Script object. 
+*/
 class SdpConfigSandbox extends GroovyInterceptor {
   @Override
   @NonCPS
