@@ -40,6 +40,11 @@ class StepWrapper implements SdpBindingItem{
             script.currentBuild.result = "Failure"
             throw new InvokerInvocationException(x);
         } finally{
+            sdp_context = [
+                step: name, 
+                library: library,
+                status: script.currentBuild.result
+            ]
             script.extensions.invoke AfterStep, script.getBinding(), sdp_context
             script.extensions.invoke Notifier,  script.getBinding(), sdp_context
         }
