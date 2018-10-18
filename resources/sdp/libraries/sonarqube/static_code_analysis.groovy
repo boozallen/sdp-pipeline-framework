@@ -22,7 +22,8 @@ def call(){
           projectKey = "$env.REPO_NAME:$env.BRANCH_NAME".replaceAll("/", "_")
           projectName = "$env.REPO_NAME - $env.BRANCH_NAME"
           def script = """sonar-scanner -X \
-                          -Dsonar.login=${token} \
+                          -Dsonar.login=${user} \
+                          -Dsonar.password=${token} \
                           -Dsonar.projectKey="$projectKey" \
                           -Dsonar.projectName="$projectName" \
                           -Dsonar.projectBaseDir=. """
