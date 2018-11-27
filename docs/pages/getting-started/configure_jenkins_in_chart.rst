@@ -19,7 +19,7 @@ actively ignored by Git.
 Instead, a template is provided that you can copy to your own values.yaml file.
 One way to create this copy is opening your terminal to the sdp repository and
 running the command ``cp values.template.yaml values.yaml``. It is highly
-recommended to start from this template and adding your additional settings to
+recommended to start from this template and add your additional settings to
 that template copy. Some of the necessary settings you will need to configure
 are described below.
 
@@ -57,7 +57,6 @@ example configuration further down on this page.
 .. note::
    The credentialID fields refer to the ID of a credential object stored in Jenkins.
    Assuming you have a single GitHub account you plan to use, put ``github``
-<<<<<<< HEAD
    here. Otherwise provide a unique credentialID for each GitHub account you plan
    to use. We go over storing these credentials in Jenkins further down this page.
 =======
@@ -71,7 +70,8 @@ example configuration further down on this page.
 Configure Pipeline Configuration Repository
 ===========================================
 
-Next, we need to have Jenkins import the organization config repo we created earlier. To do this, we add it to the list of external pipeline libraries to import on startup.
+Next, we need to have Jenkins import the organization config repo we created earlier.
+To do this, we add it to the list of external pipeline libraries to import on startup.
 
 Add the following to the ``values.yaml`` file, creating an entry for your organization config repo:
 
@@ -80,11 +80,11 @@ Add the following to the ``values.yaml`` file, creating an entry for your organi
     jenkins:
 
         pipelineLibraries:
-        - name:               Required. Library ID to reference when loading
+        - name:               Required. Library ID to reference when loading (the Organization Name)
           githubApiUrl:       Required. GitHub API URL
           githubCredentialID: Required. The Name Of The Jenkins Credential That Can Access Library Repo
-          org:                Required. Name of GitHub Organization Containing Library
-          repo:               Required. Name of GitHub Repository
+          org:                Required. Name of the GitHub Organization Containing Library
+          repo:               Required. Name of the GitHub Repository
           implicit:           Optional. Whether to Load Library Implicitly. Default false.
           defaultVersion:     Optional. Default Branch of Library to Load. Default master.
         - ... (multiple can be defined)
@@ -99,8 +99,11 @@ Add the following to the ``values.yaml`` file, creating an entry for your organi
 Configure Credentials
 =====================
 
-Now that we've chosen our GitHub organizations and pipeline libraries, we now need
-to provide Jenkins the GitHub credentials to access these resources.
+Now that we've chosen our GitHub organizations and pipeline libraries, we need
+to provide Jenkins the GitHub credentials to access these resources. Include a
+*credentials* block in your values.yaml file and an entry with id **github**
+containing your GitHub credentials. You can also add any additional credentials
+you plan to use.
 
 ::
 
