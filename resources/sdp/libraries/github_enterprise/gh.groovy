@@ -12,7 +12,7 @@ def call() {
 
 
   withCredentials([usernamePassword(credentialsId: credId, passwordVariable: 'PAT', usernameVariable: 'USER')]) {
-    def ghUrlBase - "${env.GIT_URL.split("/")[0..-3].join("/")}"
+    def ghUrlBase = "${env.GIT_URL.split("/")[0..-3].join("/")}"
     if (ghUrlBase =~ /https?:\/\/github\.com/ ) {
       def ghUrl = "https://api.github.com"
     } else {
