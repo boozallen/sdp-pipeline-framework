@@ -6,9 +6,18 @@
 import org.kohsuke.github.*
 
 def call() {
-  withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'PAT', usernameVariable: 'USER')]) {
-    def ghUrl = "${env.GIT_URL.split("/")[0..-3].join("/")}/api/v3"
+
+  def credId = scm.getUserRemoteConfigs()[0]?.getCredentialsId() ?:
+               {echo "Could not find CredentialId. Using default ID \"github\""; 'github'}
+
+
+  withCredentials([usernamePassword(credentialsId: credId, passwordVariable: 'PAT', usernameVariable: 'USER')]) {
+    def ghUrlBase - "${env.GIT_URL.split("/")[0..-3].join("/")}"
+    if (ghUrlBase =~ /https?:\/\/github\.com/ ) {
+      def ghUrl = "https://api.github.com"
+    } else {
+      def ghUrl = "${env.GIT_URL.split("/")[0..-3].join("/")}/api/v3"
+    }
     return org.kohsuke.github.GitHub.connectToEnterprise(ghUrl, PAT)
   }
 }
-
