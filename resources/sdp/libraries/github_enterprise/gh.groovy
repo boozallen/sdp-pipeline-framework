@@ -13,10 +13,11 @@ def call() {
 
   withCredentials([usernamePassword(credentialsId: credId, passwordVariable: 'PAT', usernameVariable: 'USER')]) {
     def ghUrlBase = "${env.GIT_URL.split("/")[0..-3].join("/")}"
+    def ghUrl = ''
     if (ghUrlBase =~ /https?:\/\/github\.com/ ) {
-      def ghUrl = "https://api.github.com"
+      ghUrl = "https://api.github.com"
     } else {
-      def ghUrl = "${env.GIT_URL.split("/")[0..-3].join("/")}/api/v3"
+      ghUrl = "${env.GIT_URL.split("/")[0..-3].join("/")}/api/v3"
     }
     return org.kohsuke.github.GitHub.connectToEnterprise(ghUrl, PAT)
   }
