@@ -34,15 +34,15 @@ void call(app_env, Closure body){
         */
         def tiller_credential = app_env.tiller_credential ?:
                 config.tiller_credential  ?:
-                        {error "Tiller Namespace Not Defined"}()
+                        {error "Tiller Credential Not Defined"}()
         /*
            ocp url
            can be specific in library spec as "url"
            or per application environment as "openshift_url"
         */
         def ocp_url = app_env.openshift_url ?:
-                config.url            ?:
-                        {error "OpenShift URL Not Defined"}()
+                      config.url            ?:
+                      {error "OpenShift URL Not Defined"}()
 
         /*
            values file to be used when deploying chart
@@ -51,11 +51,11 @@ void call(app_env, Closure body){
            otherwise - will fail
         */
         def values_file = app_env.chart_values_file ?:
-                app_env.short_name ? "values.${app_env.short_name}.yaml" :
-                        {error "Values File To Use For This Chart Not Defined"}()
+                          app_env.short_name ? "values.${app_env.short_name}.yaml" :
+                          {error "Values File To Use For This Chart Not Defined"}()
 
         def image_repo_project = config.image_repository_project ?:
-                                 { error "You must define image_repository_project where images are pushed" }()
+                                 {error "You must define image_repository_project where images are pushed" }()
 
         withGit url: config_repo, cred: git_cred, {
             withCredentials([usernamePassword(credentialsId: tiller_credential, passwordVariable: 'token', usernameVariable: 'user')]) {
@@ -90,10 +90,11 @@ void call(app_env, Closure body){
 
 void update_values_file(values_file){
     if (!fileExists(values_file))
-        error "Values File ${values_file} does not exist in ${config_repo}"
+        error "Values File ${values_file} does not exist in the given Helm configuration repo"
 
     values = readYaml file: values_file
     repo = env.REPO_NAME.replaceAll("-","_")
+    echo "writing new Git SHA ${env.GIT_SHA} to image_shas.${repo} in ${values_file}"
     values.image_shas[repo] = env.GIT_SHA
     values.is_ephemeral = true
     sh "rm ${values_file}"
@@ -103,12 +104,13 @@ void update_values_file(values_file){
 
 def prep_project(image_repo_project){
     def name = (1..10).collect([]){ ("a".."z").getAt(new Random().nextInt(26) % 26) }.join()
+    echo "Ephemeral Environment Name: ${name}"
     def projectDisplayName = "${env.REPO_NAME}: ${env.JOB_NAME.split("/").last()}, Build: ${env.BUILD_NUMBER}"
+    echo "Project Display Name: ${projectDisplayName}"
     try {
         sh "oc new-project ${name} --display-name='${projectDisplayName}'"
         sh "oc process -p TILLER_NAMESPACE=${env.TILLER_NAMESPACE} -p PROJECT=${name} tiller-project-role -n openshift | oc apply -f -"
         sh "oc adm policy add-role-to-user system:image-puller system:serviceaccount:${name}:default -n ${image_repo_project}"
-        sh "oc adm policy add-scc-to-user privileged system:serviceaccount:${name}:default -n ${name}"
     }catch(any){
         sh "oc delete project ${name}"
         throw any
@@ -120,7 +122,7 @@ def do_release(project, values_file){
     def helm_output = sh script: "helm install . -n ${project} -f ${values_file} --wait",
                          returnStdout: true
 
-    println helm_output
+    echo helm_output
 
     def start = false
     def release_env = [:]

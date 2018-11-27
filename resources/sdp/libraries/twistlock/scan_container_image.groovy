@@ -21,14 +21,14 @@ def call() {
                 // for now .. just docker
                 def images = ""
                 get_images_to_build().each { img ->
-                  image = "${img.repo}/${img.path}:${img.tag} "
+                  image = "${img.repo}/${img.path}:${img.tag} " //The trailing space is intentional
                   sh "docker pull ${image}"
                   images += image
                 }
                 def scan_url = this.do_scan(images)
                 def results = this.parse_results(scan_url)
                 results.images.each {
-                  println """
+                  echo """
                       Twistlock Scan Results: ${it.info.tags.registry}/${it.info.tags.repo}/${it.info.tags.tag}
                       -----------------------------------------
                       CVE Results:
@@ -49,7 +49,7 @@ def call() {
 }
 
 void get_twistcli() {
-    println "getting twistlock CLI"
+    echo "getting twistlock CLI"
     sh "curl -k -u '${user}':'${pass}' -H 'Content-Type: application/json' -X GET -o /usr/local/bin/twistcli ${config.url}/api/v1/util/twistcli"
     sh "chmod +x /usr/local/bin/twistcli"
     sh "twistcli -v"

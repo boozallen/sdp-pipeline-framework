@@ -8,13 +8,15 @@ package sdp.config
 import org.kohsuke.groovy.sandbox.GroovyValueFilter
 import org.kohsuke.groovy.sandbox.GroovyInterceptor
 import org.kohsuke.groovy.sandbox.GroovyInterceptor.Invoker
+import com.cloudbees.groovy.cps.NonCPS
+
 
 /*
   our sandbox.  just block all the things except the creation of
-  the SdpConfigBuilder base class and methods associated with that. 
+  the SdpConfigBuilder base class and methods associated with that.
 
   The sandbox is having trouble recognizing the receiver as type SdpConfigBuilder
-  so backed off to checking if it's a Script object. 
+  so backed off to checking if it's a Script object.
 */
 class SdpConfigSandbox extends GroovyInterceptor {
   @Override
@@ -41,7 +43,7 @@ class SdpConfigSandbox extends GroovyInterceptor {
       args -> ${args}
     """)
   }
-  
+
   @Override
   @NonCPS
   public Object onNewInstance(Invoker invoker, Class receiver, Object... args) throws Throwable {
@@ -65,7 +67,7 @@ class SdpConfigSandbox extends GroovyInterceptor {
       """)
     }
   }
-  
+
   @Override
   @NonCPS
   public Object onSuperCall(Invoker invoker, Class senderType, Object receiver, String method, Object... args) throws Throwable {
@@ -136,7 +138,7 @@ class SdpConfigSandbox extends GroovyInterceptor {
       index -> ${index}
     """)
   }
-  
+
   @Override
   @NonCPS
   public Object onSetArray(Invoker invoker, Object receiver, Object index, Object value) throws Throwable {

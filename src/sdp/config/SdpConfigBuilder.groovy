@@ -3,9 +3,10 @@
   This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 */
 
-package sdp.config 
+package sdp.config
 
 import java.util.ArrayList
+import com.cloudbees.groovy.cps.NonCPS
 
 /*
     Base class during Config File DSL execution.
@@ -30,9 +31,9 @@ abstract class SdpConfigBuilder extends Script{
         def node_config = object_stack.pop()
         def node_name = node_stack.pop()
 
-        if (object_stack.size()) 
+        if (object_stack.size())
             object_stack.last() << [ (node_name): node_config ]
-        else 
+        else
             sdp_config.config << [ (name): node_config]
     }
 
@@ -40,11 +41,11 @@ abstract class SdpConfigBuilder extends Script{
     void setProperty(String name, value){
         if (name.equals("merge") && value.equals(true))
             sdp_config.merge.push(node_stack.join("."))
-        else if (name.equals("override") && value.equals(true)) 
+        else if (name.equals("override") && value.equals(true))
             sdp_config.override.push(node_stack.join("."))
-        else if (object_stack.size()) 
+        else if (object_stack.size())
             object_stack.last()[name] = value
-        else 
+        else
             sdp_config.config[name] = value
     }
 

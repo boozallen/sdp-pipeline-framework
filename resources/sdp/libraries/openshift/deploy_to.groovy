@@ -34,7 +34,7 @@ void call(app_env){
     */
     def tiller_credential = app_env.tiller_credential ?:
                             config.tiller_credential  ?:
-                            {error "Tiller Namespace Not Defined"}()
+                            {error "Tiller Credential Not Defined"}()
     /*
        ocp url
        can be specific in library spec as "url"
@@ -52,7 +52,7 @@ void call(app_env){
     */
     def release = app_env.tiller_release_name ?:
                   app_env.short_name          ?:
-                  {error "App Env Must Specify tiller_namespace or short_name"}()
+                  {error "App Env Must Specify tiller_release_name or short_name"}()
 
 
     /*
@@ -81,7 +81,7 @@ void call(app_env){
       inside_sdp_image "openshift_helm", {
         withCredentials([usernamePassword(credentialsId: tiller_credential, passwordVariable: 'token', usernameVariable: 'user')]) {
           withEnv(["TILLER_NAMESPACE=${tiller_namespace}"]) {
-            this.update_values_file values_file
+            this.update_values_file( values_file, config_repo )
             this.oc_login ocp_url, token
             this.do_release release, values_file
             this.push_config_update values_file
@@ -92,12 +92,13 @@ void call(app_env){
   }
 }
 
-void update_values_file(values_file){
+void update_values_file(values_file, config_repo){
   if (!fileExists(values_file))
     error "Values File ${values_file} does not exist in ${config_repo}"
 
   values = readYaml file: values_file
   key = env.REPO_NAME.replaceAll("-","_")
+  echo "writing new Git SHA ${env.GIT_SHA} to image_shas.${key} in ${values_file}"
   values.image_shas[key] = env.GIT_SHA
   sh "rm ${values_file}"
   writeYaml file: values_file, data: values
@@ -115,16 +116,16 @@ void do_release(release, values_file){
 
 void oc_login(ocp_url, token){
   try {
-    echo "Trying to log in via token.."
+    echo "Trying to log in via token..."
     sh "oc login --insecure-skip-tls-verify ${ocp_url} --token=${token} > /dev/null"
   } catch (any){
-    echo "Trying to log in via user/pass.."
+    echo "Trying to log in via user/pass..."
     sh "oc login --insecure-skip-tls-verify ${ocp_url} -u ${user} -p ${token} > /dev/null"
   }
 }
 
 void push_config_update(values_file){
-  println "updating values file -> ${values_file}"
+  echo "updating values file -> ${values_file}"
   git add: values_file
   git commit: "Updating ${values_file} for ${env.REPO_NAME} images"
   git push

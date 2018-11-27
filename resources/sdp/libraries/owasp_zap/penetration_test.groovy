@@ -19,7 +19,7 @@ void call() {
 
     def vuln_threshold
     if (config.vulnerability_threshold){
-      if (!config.vulnerability_threshold in ["Ignore", "Low", "Medium", "High", "Informational"]){
+      if ( !(config.vulnerability_threshold in ["Ignore", "Low", "Medium", "High", "Informational"])){
         error "OWASP Zap: Vulnerability Threshold ${config.vulnerability_threshold} not Ignore, Low, Medium, High, or Informational"
       }
       vuln_threshold = config.vulnerability_threshold
@@ -29,7 +29,7 @@ void call() {
 
     inside_sdp_image "zap", {
       // start zap daemon
-      sh """ zap.sh -daemon \
+      sh """zap.sh -daemon \
                     -host 127.0.0.1 \
                     -port 8080 \
                     -config api.disablekey=true \
@@ -52,7 +52,7 @@ void call() {
       if(!vuln_threshold.equals("Ignore")){
         def n_vulns = sh script: "zap-cli alerts -l ${vuln_threshold}", returnStatus: true
         if (n_vulns){
-            error "OWASP Zap found ${n_vulns} ${vuln_threshold} vulnerabilities while "
+            error "OWASP Zap found ${n_vulns} ${vuln_threshold} vulnerabilities while performing a scan"
         }
       }
     }
