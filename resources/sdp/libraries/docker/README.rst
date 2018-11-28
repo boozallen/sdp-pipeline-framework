@@ -1,9 +1,11 @@
-.. _Docker Library: 
+.. _Docker Library:
 ------
 Docker
 ------
 
-The Docker library will build docker images and push them into a docker reposioty.
+The `Docker`_ library **builds** docker images and **push** them to a docker repository.
+
+.. _Docker: https://docs.docker.com/get-started/
 
 Steps Provided
 ==============
@@ -17,9 +19,9 @@ Library Configuration Options
 =============================
 
 .. csv-table::  Docker Library Configuration Options
-   :header: "Field", "Description", "Default Value"
+   :header: "Field", "Description", "Default Value", "Options"
 
-   "build_strategy", "This defines the type of docker build to be used. There are three options to choose from; docker-compose, modules, and dockerfile", "dockerfile"
+   "build_strategy", "This defines the type of docker build to be used", "dockerfile", "docker-compose \| modules \| dockerfile"
 
 Example Configuration Snippet
 =============================
@@ -48,7 +50,7 @@ If you are using a separate set of credentials change the variables listed below
 External Dependencies
 =====================
 
-- A Docker repository must be setup and configured. Credentials to the repository are also needed. 
+- A Docker repository must be setup and configured. Credentials to the repository are also needed.
 - Github Enterprise library needs to loaded.
 
 Troubleshooting
