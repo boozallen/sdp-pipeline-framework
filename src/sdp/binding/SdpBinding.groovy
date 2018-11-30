@@ -10,17 +10,19 @@ import groovy.lang.Binding
 import org.jenkinsci.plugins.workflow.cps.CpsThread
 import org.jenkinsci.plugins.workflow.cps.DSL
 import org.codehaus.groovy.runtime.InvokerHelper
+import com.cloudbees.groovy.cps.NonCPS
+
 
 class SdpBinding extends Binding implements Serializable{
     public final String STEPS_VAR = "steps"
     public def registry = [] as Set
-    private Boolean locked = false 
+    private Boolean locked = false
 
     SdpBinding(){
         CpsThread c = CpsThread.current()
         if (c) setVariable(STEPS_VAR, new DSL(c.getExecution().getOwner()))
     }
-    
+
     public void lock(){ locked = true }
 
     @Override
@@ -28,7 +30,7 @@ class SdpBinding extends Binding implements Serializable{
     public void setVariable(String name, Object value) {
         if (name in registry){
             if (locked) variables.get(name).throwPostLockException()
-            else variables.get(name).throwPreLockException() 
+            else variables.get(name).throwPreLockException()
         }
         if (value in SdpBindingItem) registry << name
         super.setVariable(name, value)

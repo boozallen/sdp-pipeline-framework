@@ -3,19 +3,20 @@
   This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 */
 
-import sdp.binding.* 
+import sdp.binding.*
 
 import org.jenkinsci.plugins.workflow.libs.LibraryRecord
 import org.jenkinsci.plugins.workflow.libs.LibrariesAction
 import org.jenkinsci.plugins.workflow.libs.GlobalLibraries
 import org.jenkinsci.plugins.workflow.cps.CpsThread
+import com.cloudbees.groovy.cps.NonCPS
 import groovy.io.FileType
 
 void call(script){
   pipeline_config().libraries.each{ lib_name, lib_config ->
     branch = lib_config.branch
     config = lib_config.subMap(lib_config.keySet() - "branch")
-    
+
     if( library_defined_by_jenkins(lib_name) ){
       library "${lib_name}@${branch ?: "master"}"
       get_external_library_steps(lib_name).each{ step ->
