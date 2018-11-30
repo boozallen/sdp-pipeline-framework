@@ -1,12 +1,12 @@
-.. _Owasp Zap Library: 
+.. _Owasp Zap Library:
 ---------
 OWASP ZAP
 ---------
 
 `OWASP Zed Attack Proxy (ZAP)`_ is a tool that can help
-you automatically find security vulnerabilities in your web applications while
-you are developing and testing your applications. Its also a great tool for
-experienced pentesters to use for manual security testing.
+you **automatically find security vulnerabilities** in your web applications while
+you are developing and testing your applications. It's also a great tool for
+experienced penetration testers for manual security testing.
 
 Steps Contributed
 #################
@@ -18,10 +18,10 @@ Library Configuration Options
 .. csv-table:: OWASP ZAP Library Configuration Options
    :header: "Field", "Description", "Default Value", "Options"
 
-   "target", "The target url to pentest", "none", 
+   "target", "The target url to pentest", "None",
    "vulnerability_threshold", "Minimum alert level to include in report", "High", "Ignore | Low | Medium | High | Informational"
 
-:code:`target` is set to :code:`env.FRONTEND_URL` if available. If not then it uses the provided
+:code:`target` is set to :code:`env.FRONTEND_URL` if its value is non-null. Otherwise it uses the provided
 URL. If no URL is provided an error is thrown.
 
 Example Configuration Snippet

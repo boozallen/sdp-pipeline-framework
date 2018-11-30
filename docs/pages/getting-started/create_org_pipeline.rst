@@ -11,7 +11,7 @@ The branching strategy we'll define will:
   * build a container image
   * do static code quality analysis
 
-* Pull requests from a feature branch to master will:
+* For each pull requests from a feature branch to master:
 
   * build the container image
   * do static code quality analysis
@@ -20,7 +20,7 @@ The branching strategy we'll define will:
   * perform penetration testing
   * perform accessibility compliance scanning
 
-* Merges to master will:
+* For each merge to master:
 
   * deploy to production
 
@@ -45,6 +45,6 @@ To enforce this branching strategy, our Jenkinsfile will look like this:
         deploy_to prod
     }
 
-.. important:: Remember to git push your ``pipeline-configuration`` repository after making the final changes.
+.. important:: Remember to ``git push`` your pipeline-configuration repository after making the final changes.
 
 .. note:: The options available for defining a branching strategy this way can be seen in the :ref:`GitHub Enterpise<GitHub Enterprise Library>` library documentation.

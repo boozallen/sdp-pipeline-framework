@@ -1,11 +1,13 @@
 Twistlock
 ---------
 
-Twistlock is an automated and scalable container cybersecurity platform. Twistlock manages a full-lifecycle vulnerability and
-compliance management to application-tailored runtime defense and cloud native firewalls, Twistlock helps secure your containers
+`Twistlock`_ is an automated and scalable container cybersecurity platform. Twistlock manages a **full-lifecycle vulnerability and
+compliance management** to application-tailored runtime defense and cloud native firewalls, Twistlock helps secure your containers
 and modern applications against threats across the entire application lifecycle.
 
-SDP can integrate with Twistlock to perform **container image scanning**
+SDP can integrate with Twistlock to perform **container image scanning**.
+
+.. _Twistlock: https://www.twistlock.com/why-twistlock/
 
 Steps Provided
 ##############
@@ -19,8 +21,8 @@ Library Configurations
 .. csv-table:: Twistlock Library Configuration Options
    :header: "Field", "Description", "Default Value"
 
-   "url", "The Twistlock Console url", "none"
-   "credential", "The Jenkins credential ID to access Twistlock Console", "none"
+   "url", "The Twistlock Console url", "None"
+   "credential", "The Jenkins credential ID to access Twistlock Console", "None"
 
 Example Configuration Snippet
 *****************************

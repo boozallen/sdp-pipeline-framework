@@ -10,8 +10,8 @@ To prepare a multitenant configuration of OpenShift for SDP we need to set up th
 * A project per application environment per isolated tenant
 * An installation of Tiller per tenant
 * An OpenShift project to store the image streams for archived container images
-* Configure RBAC for these projects.
-* Create a Helm configuration repository to store the chart(s) for a tenant (or group of tenants)
+* RBAC configuration for these projects.
+* A Helm configuration repository to store the chart(s) for a tenant (or group of tenants)
 
 ===================================
 Preparing The OpenShift Environment
@@ -163,9 +163,18 @@ Assuming you've created an empty GitHub repository for your helm chart, you can 
     git commit -m "initializing chart repo"
     git push -u origin master
 
-.. note::
 
-    You can delete the contents of the templates directory & update *Chart.yaml* to describe your application.
+Once that's done you should
+
+1. Delete the yaml files that were automatically created when ``helm create`` was called. These are example helm templates, and we don't need them.
+2. Delete the contents of templates/_helpers.tpl and templates/NOTES.txt. We want to keep those files, but provide our own content.
+3. Update *Chart.yaml* to properly describe your new chart.
+
+ For more information on Helm charts, check out the |Helm_documentation|.
+
+ .. |Helm_documentation| raw:: html
+
+     <a href="https://docs.helm.sh/developing_charts/" target="_blank">Helm documentation</a>
 
 ====================
 SDP Helm Conventions
@@ -206,9 +215,9 @@ The purpose of these separate files is so that you can provide your separate con
 
 The SDP will automatically update the image sha value discussed earlier, but you should now modify the different values.yaml files with environment-specifc variables.
 
-====================================
+==================================================
 Example Helm Configuration With Forked SDP-Website
-====================================
+==================================================
 
 If you forked the SDP-Website repo earlier to follow along with this guide these are the changes that you would need to make after running the ``helm create`` command.
 
@@ -292,22 +301,22 @@ frontend.yaml
             labels:
               app: frontend
               deploymentconfig: frontend
-      spec:
-        containers:
-        - image: docker-registry.default.svc:5000/demo/sdp-website:{{ .Values.image_shas.sdp_website }}
-          name: frontend
-          volumeMounts:
-              - mountPath: /var/cache/nginx
-                name: nginx-cache
-        ports:
-        - name: web
-          protocol: TCP
-          port: 8080
-          targetPort: 8080
-          nodePort: 0
-        volumes:
-        - name: nginx-cache
-          emptyDir: {}
+          spec:
+            containers:
+            - image: docker-registry.default.svc:5000/demo/sdp-website:{{ .Values.image_shas.sdp_website }}
+              name: frontend
+              volumeMounts:
+                  - mountPath: /var/cache/nginx
+                    name: nginx-cache
+            ports:
+            - name: web
+              protocol: TCP
+              port: 8080
+              targetPort: 8080
+              nodePort: 0
+            volumes:
+            - name: nginx-cache
+              emptyDir: {}
 
     - kind: Service
       apiVersion: v1
