@@ -39,11 +39,14 @@ String get_merged_from(){
   node{
     unstash "git-info"
     // update remote for git name-rev to properly work
+    def credId = scm.getUserRemoteConfigs()[0]?.getCredentialsId() ?:
+                 {echo "Could not find CredentialId. Using default ID \"github\""; 'github'}
+
     def remote = sh(
         script: "git remote -v",
         returnStdout: true
     ).split()[1]
-    withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'PASS', usernameVariable: 'USER')]){
+    withCredentials([usernamePassword(credentialsId: credId, passwordVariable: 'PASS', usernameVariable: 'USER')]){
         remote = remote.replaceFirst("://", "://${USER}:${PASS}@")
         sh "git remote rm origin"
         sh "git remote add origin ${remote}"
