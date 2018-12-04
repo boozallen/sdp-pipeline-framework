@@ -63,7 +63,7 @@ def get_external_library_steps(String name){
 def get_sdp_library_steps(name){
   build_root = CpsThread.current().getExecution().getOwner().getExecutable().getRootDir()
   def steps = [:]
-  new File("${build_root}/libs/solutions_delivery_platform/resources/sdp/libraries/${name}").traverse(type: FileType.FILES){ file ->
+  new File("${build_root}/libs/solutions_delivery_platform/resources/sdp/libraries/${name}").traverse(type: FileType.FILES, excludeFilter: { it.path ==~ /.*\/unit-tests\/.*\.groovy/}){ file ->
     if (file.path.endsWith(".groovy"))
       steps[file.name.take(file.name.lastIndexOf('.'))] = file.text
   }
