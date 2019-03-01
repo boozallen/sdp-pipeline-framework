@@ -1,3 +1,17 @@
+
+Deprecated
+----------
+
+This repository has been deprecated.  The SDP solution has been broken into a 
+Jenkins plugin called the `Jenkins Templating Engine`_ and our `SDP Libraries`_. 
+
+`Full Documentation`_
+
+.. _Jenkins Templating Engine: https://github.com/boozallen/jenkins-templating-engine
+.. _SDP Libraries: https://github.com/boozallen/sdp-libraries
+.. _Full Documentation: https://boozallen.github.io/sdp-docs/
+
+
 Repository Contents
 -------------------
 
