@@ -31,9 +31,5 @@ Repository Contents
 |               |  pipeline_config.groovy | Default SDP Configuration File                  |
 +---------------+-------------------------+-------------------------------------------------+
 
-For More Information
---------------------
-See our documentation_.
 
-.. _documentation: https://boozallen.github.io/sdp-pipeline-framework/index.html
-.. _here: https://boozallen.github.io/sdp-pipeline-framework/pages/contribute-to-docs.html
+
